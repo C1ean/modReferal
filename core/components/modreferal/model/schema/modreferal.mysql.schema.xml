@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="modreferal" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="modreferal" version="1.1">
+
+    <object class="modReferalUsers" table="mod_referal_users" extends="xPDOObject">
+        <field key="id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="false" index="pk"/>
+
+        <field key="createdon" dbtype="timestamp" phptype="datetime" null="true" default="CURRENT_TIMESTAMP"/>
+        <field key="referrer_id" dbtype="int" precision="10" phptype="integer" attributes="unsigned" null="true"
+               default="0" index="index"/>
+        <field key="referrer_code" dbtype="varchar" precision="50" phptype="string" null="true" default=""
+               index="index"/>
+
+        <index alias="id" name="id" primary="true" unique="true" type="BTREE">
+            <column key="id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="referrer_id" name="referrer_id" primary="false" unique="false" type="BTREE">
+            <column key="referrer_id" length="" collation="A" null="false"/>
+        </index>
+        <index alias="referrer_code" name="referrer_code" primary="false" unique="true" type="BTREE">
+            <column key="referrer_code" length="" collation="A" null="false"/>
+        </index>
+
+
+        <aggregate alias="User" class="modUser" local="internalKey" foreign="id" owner="foreign" cardinality="one"/>
+    </object>
+
+</model>
